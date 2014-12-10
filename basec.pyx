@@ -51,7 +51,7 @@ def dunn(k_list):
     """
     cdef: 
         Py_ssize_t len_k_list = len(k_list)
-        double [:,:] deltas = np.ones([len_k_list, len_k_list], dtype=np.float64)*10000
+        double [:,:] deltas = np.ones([len_k_list, len_k_list], dtype=np.float64)*100000
         double [:,:] big_deltas = np.zeros([len_k_list, 1], dtype=np.float64)
         Py_ssize_t k, l
         
@@ -62,14 +62,51 @@ def dunn(k_list):
             deltas[k, l] = dunn_delta(k_list[k], k_list[l])
         
         big_deltas[k] = dunn_big_delta(k_list[k])
+    res = np.min(deltas)/np.max(big_deltas)*1
+    return res
     
-    return np.min(deltas)/np.max(big_deltas)
+cdef double big_s(double [:, :] x, double [:] center):
+    cdef:
+        Py_ssize_t len_x = x.shape[0]
+        double total = 0
+        
+    for i in range(len_x):
+        total += d_euc(x[i], center)    
     
-def davisbouldin(k):
+    return total/len_x
+
+def davisbouldin(k_list, k_centers):
     """ Davis Bouldin Index
-    
+    k_list : list of np.arrays
+        A list containing a numpy array for each cluster |c| = number of clusters
+        c[K] is np.array([N, p]) (N : number of samples in cluster K, p : sample dimension)
+    k_centers : np.array
+        The array of the cluster centers (prototypes) of type np.array([K, p])
     Parameters
     ----------
-    
     """
-    return True
+    cdef: 
+        Py_ssize_t len_k_list = len(k_list)
+        Py_ssize_t k, j
+        double [:] big_ss = np.zeros([len_k_list], dtype=np.float64)
+        double [:, :] d_eucs = np.zeros([len_k_list, len_k_list], dtype=np.float64)
+        double db = 0
+        double [:] values = np.zeros([len_k_list-1], dtype=np.float64)
+
+    for k in range(len_k_list):
+        big_ss[k] = big_s(k_list[k], k_centers[k])
+
+    for k in range(len_k_list):
+        for l in range(0, len_k_list):
+            d_eucs[k, l] = d_euc(k_centers[k], k_centers[l])
+
+    for k in range(len_k_list):
+        for l in range(0, k):
+            values[l] = (big_ss[k] + big_ss[l])/d_eucs[k, l]
+        for l in range(k+1, len_k_list):
+            values[l-1] = (big_ss[k] + big_ss[l])/d_eucs[k, l]
+
+        db += np.max(values)
+    res = db/len_k_list
+    return res
+    
