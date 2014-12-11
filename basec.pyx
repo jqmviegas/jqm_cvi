@@ -1,11 +1,23 @@
 # -*- coding: utf-8 -*-
 #cython: language_level=3, boundscheck=False
+""" JQM_CV - Cython implementations of Dunn and Davis Bouldin clustering validity indices
 
+dunn(k_list):
+    Slow implementation of Dunn index that depends on numpy
+    -- basec.pyx Cython implementation is much faster but flower than dunn_fast()
+dunn_fast(points, labels):
+    Fast implementation of Dunn index that depends on numpy and sklearn.pairwise
+    -- No Cython implementation
+davisbouldin(k_list, k_centers):
+    Implementation of Davis Boulding index that depends on numpy
+    -- basec.pyx Cython implementation is much faster
+"""
 __author__ = "Joaquim Viegas"
 
 import numpy as np
 cimport numpy as np
 from cython.view cimport array as cvarray
+from sklearn.metrics.pairwise import euclidean_distances
 
 cdef double d_euc(double[:] arr1, double[:] arr2):
     """ Euclidean distance
