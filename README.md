@@ -17,10 +17,15 @@ Functions:
 
 dunn(k_list):
 > Slow implementation of Dunn index that depends on numpy
+>
 > -- basec.pyx Cython implementation is much faster but flower than dunn_fast()
+
 dunn_fast(points, labels):
 > Fast implementation of Dunn index that depends on numpy and sklearn.pairwise
+>
 > -- No Cython implementation
+
 davisbouldin(k_list, k_centers):
 > Implementation of Davis Boulding index that depends on numpy
+> 
 > -- basec.pyx Cython implementation is much faster
