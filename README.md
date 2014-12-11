@@ -1,7 +1,7 @@
 jqm_cvi
 =======
 
-Small module with Cluster Validity Indexes (CVI)
+Small module with Cluster Validity Indices (CVI)
 ------------------------------------------------
 
 Dunn and Davius Bouldin indices are implemented. It follows the equations presented in theory.pdf.
