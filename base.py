@@ -108,13 +108,14 @@ def  big_s(x, center):
 
 def davisbouldin(k_list, k_centers):
     """ Davis Bouldin Index
+    
+    Parameters
+    ----------
     k_list : list of np.arrays
         A list containing a numpy array for each cluster |c| = number of clusters
         c[K] is np.array([N, p]) (N : number of samples in cluster K, p : sample dimension)
     k_centers : np.array
         The array of the cluster centers (prototypes) of type np.array([K, p])
-    Parameters
-    ----------
     """
     len_k_list = len(k_list)
     big_ss = np.zeros([len_k_list], dtype=np.float64)
