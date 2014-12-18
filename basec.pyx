@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 #cython: language_level=3, boundscheck=False
+__author__ = "Joaquim Viegas"
+
 """ JQM_CV - Cython implementations of Dunn and Davis Bouldin clustering validity indices
 
 dunn(k_list):
@@ -12,7 +14,6 @@ davisbouldin(k_list, k_centers):
     Implementation of Davis Boulding index that depends on numpy
     -- basec.pyx Cython implementation is much faster
 """
-__author__ = "Joaquim Viegas"
 
 import numpy as np
 cimport numpy as np

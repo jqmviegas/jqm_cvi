@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = "Joaquim Viegas"
+
 """ JQM_CV - Python implementations of Dunn and Davis Bouldin clustering validity indices
 
 dunn(k_list):
