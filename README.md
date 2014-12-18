@@ -19,6 +19,7 @@ Functions:
 > Slow implementation of Dunn index that depends on numpy
 >
 > -- basec.pyx Cython implementation is much faster but slower than dunn_fast()
+
 ```python
 	""" Dunn index [CVI]
     
@@ -34,6 +35,7 @@ Functions:
 > Fast implementation of Dunn index that depends on numpy and sklearn.pairwise
 >
 > -- No Cython implementation
+
 ```python
 	""" Dunn index - FAST (using sklearn pairwise euclidean_distance function)
     
@@ -50,6 +52,7 @@ Functions:
 > Implementation of Davis Boulding index that depends on numpy
 > 
 > -- basec.pyx Cython implementation is much faster
+
 ```python
 	""" Davis Bouldin Index
     k_list : list of np.arrays
