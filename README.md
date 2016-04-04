@@ -65,3 +65,8 @@ Functions:
         The array of the cluster centers (prototypes) of type np.array([K, p])
     """
 ```
+
+Installation 
+
+> python setup.py install
+>
