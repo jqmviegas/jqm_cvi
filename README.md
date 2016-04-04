@@ -1,4 +1,4 @@
-jqm_cvi
+jqmcvi
 =======
 
 Small module with Cluster Validity Indices (CVI)

@@ -7,11 +7,8 @@ __author__ = "Joaquim Viegas"
 # Description
 #==============================================================================
 
-import sys
-#sys.path.append('D:\\Dropbox\\code\\jqmodules')
-sys.path.append('C:\\Users\\miguel\\Dropbox\\code\\jqmodules')
-import jqm_cvi.basec as jqmcvi
-import jqm_cvi.base as jqmcvin
+import jqmcvi.basec as jqmcvi
+import jqmcvi.base as jqmcvin
 
 import pandas as pd
 import numpy as np
