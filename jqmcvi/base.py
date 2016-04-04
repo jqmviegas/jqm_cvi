@@ -65,7 +65,7 @@ def delta_fast(ck, cl, distances):
     
 def big_delta_fast(ci, distances):
     values = distances[np.where(ci)][:, np.where(ci)]
-    values = values[np.nonzero(values)]
+    #values = values[np.nonzero(values)]
             
     return np.max(values)
 
