@@ -15,7 +15,8 @@ davisbouldin(k_list, k_centers):
 """
 
 import numpy as np
-from sklearn.metrics.pairwise import euclidean_distances
+
+from scipy.spatial.distance import pdist
 
 def delta(ck, cl):
     values = np.ones([len(ck), len(cl)])*10000
@@ -69,8 +70,8 @@ def big_delta_fast(ci, distances):
             
     return np.max(values)
 
-def dunn_fast(points, labels):
-    """ Dunn index - FAST (using sklearn pairwise euclidean_distance function)
+def dunn_fast(points, labels, metric = 'euclidean'):
+    """ Dunn index - FAST (using scipy.spatial.distance.pdist function)
     
     Parameters
     ----------
@@ -78,8 +79,16 @@ def dunn_fast(points, labels):
         np.array([N, p]) of all points
     labels: np.array
         np.array([N]) labels of all points
+    metric : String
+        The metric to use when calculating the distance between points if applicable for the objective function selected. 
+        It must be one of the options allowed by scipy.spatial.distance.pdist for its metric parameter
     """
-    distances = euclidean_distances(points)
+    
+    v = pdist(points, metric)
+    size_X  = len(points)
+    X = np.zeros((size_X,size_X))
+    X[np.triu_indices(X.shape[0], k = 1)] = v
+    distances = X + X.T
     ks = np.sort(np.unique(labels))
     
     deltas = np.ones([len(ks), len(ks)])*1000000
