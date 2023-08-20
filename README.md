@@ -66,7 +66,26 @@ Functions:
     """
 ```
 
-Installation 
+## Installation 
 
-> python setup.py install
->
+```bash
+pip install git+https://github.com/jqmviegas/jqm_cvi.git
+```
+
+If you face this error
+```bash
+ error: subprocess-exited-with-error
+  
+  × python setup.py egg_info did not run successfully.
+  │ exit code: 1
+  ╰─> [6 lines of output]
+      Traceback (most recent call last):
+        File "<string>", line 2, in <module>
+        File "<pip-setuptools-caller>", line 34, in <module>
+        File "/tmp/pip-req-build-utf7v9ji/setup.py", line 9, in <module>
+          from Cython.Distutils import build_ext
+      ModuleNotFoundError: No module named 'Cython'
+      [end of output]
+```
+
+you can install Cython first, then try again to install this module
